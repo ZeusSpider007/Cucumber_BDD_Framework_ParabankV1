@@ -35,7 +35,11 @@ public class HomePage extends BasePage {
 	@FindBy(xpath = "//ul[@class='button']/li")
 	List<WebElement> quickLinksButtons;
 
+	@FindBy(xpath = "//div[@id='footermainPanel']//ul[1]")
+	WebElement footerPanel;
 
+	@FindBy(xpath = "//div[@id='footermainPanel']//ul[1]/li")
+	List<WebElement> footerLinks;
 		
 	// Action Methods
 	public void userRegistration() {	
@@ -56,6 +60,18 @@ public class HomePage extends BasePage {
 	    }
 	}
 	
+	public boolean checkFooterPanel() {
+	    BaseClass.getLogger().info("Verifying the presence of login panel on homepage");
+	    try {
+	        boolean isDisplayed = footerPanel.isDisplayed();
+	        BaseClass.getLogger().info("Footer panel is displayed: " + isDisplayed);
+	        return isDisplayed;
+	        
+	    } catch (NoSuchElementException e) {
+	        BaseClass.getLogger().info("Footer panel is not present in the DOM.");
+	        return false;
+	    }
+	}
 	
 	public void verifyHeaderLinks() {
 		
@@ -74,6 +90,30 @@ public class HomePage extends BasePage {
 			
 			else {
 				BaseClass.getLogger().info(innerText +"is NOT present in the header link");
+                System.out.println(innerText + " is not present in the preset values.");
+                Assert.fail();
+            }					
+		}
+		
+	}
+	
+public void verifyFooterLinks() {
+		
+		List<WebElement> elements = footerLinks;
+		List<String> presetValues = Arrays.asList("Home|", "About Us|", "Services|","Products|", "Locations|", "Forum|","Site Map|","Contact Us");
+		
+		for(WebElement element : elements) {
+			
+			String innerText = element.getText();
+			
+			if(presetValues.contains(innerText)) {
+				
+				BaseClass.getLogger().info(innerText +"is present in the Footer link");
+				System.out.println(innerText + " is present in the preset values.");
+            }
+			
+			else {
+				BaseClass.getLogger().info(innerText +"is NOT present in the Footer link");
                 System.out.println(innerText + " is not present in the preset values.");
                 Assert.fail();
             }					

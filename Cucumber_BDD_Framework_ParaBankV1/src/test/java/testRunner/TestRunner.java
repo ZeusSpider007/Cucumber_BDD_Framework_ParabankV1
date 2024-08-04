@@ -21,8 +21,8 @@ import io.cucumber.junit.CucumberOptions;
 					dryRun=false,    // checks mapping between scenario steps and step definition methods
 					monochrome=true,    // to avoid junk characters in output
 					publish=true,   // to publish report in cucumber server
-					//tags="@sanity"  // this will execute scenarios tagged with @sanity
-					tags="@regression"
+					tags="@sanity"  // this will execute scenarios tagged with @sanity
+					//tags="@regression"
 					//tags="@sanity and @regression" //Scenarios tagged with both @sanity and @regression
 					//tags="@sanity and not @regression" //Scenarios tagged with @sanity but not tagged with @regression
 					//tags="@sanity or @regression" //Scenarios tagged with either @sanity or @regression

@@ -7,7 +7,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pageObjects.HomePage;
+import pageObjects.MyAccountPage;
+
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Assert;
 
 
 public class HomepageValidations {
@@ -45,7 +49,26 @@ public class HomepageValidations {
 		   hp.verifyQuicklinks();
 	   } 
 	     
-	
-	
+	   
+	   @And("the footer panel should be displayed")
+	   public void the_footer_panel_should_be_displayed() {
+
+			boolean isFooterPanelDisplayed = hp.checkFooterPanel();
+	        if (isFooterPanelDisplayed) {
+	            BaseClass.getLogger().info("Footer panel is displayed as expected.");
+	        } else {
+	            BaseClass.getLogger().error("Footer panel is not displayed.");
+	            // Fail the test
+	            Assert.fail("Footer panel is not displayed as expected.");
+	        }
+		   
+	   } 
+	     
+	   @And("all the footer links should be present")
+	   public void the_footer_panel_links_should_be_displayed() {
+		   
+		   hp.verifyFooterLinks();
+	   } 
+	   
 	
 }
